@@ -28,10 +28,10 @@ def browser():
 
     shared.driver.get(base_url)
 
-    logger.warning('WebDriver initialized')
+    logger.debug('WebDriver initialized')
     yield shared.driver
 
-    logger.warning('Close WebDriver')
+    logger.debug('Close WebDriver')
     shared.driver.quit()
 
 
