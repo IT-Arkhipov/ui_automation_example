@@ -1,7 +1,3 @@
-# from selenium_framework.automationexercise.pages.account_register import account_register_page as ap
-# from selenium_framework.automationexercise.pages.main_page import main_page as mp
-# from selenium_framework.automationexercise.pages.login_page import login_page as lp
-
 from selenium_framework.automationexercise.pages.import_pages import *
 
 
