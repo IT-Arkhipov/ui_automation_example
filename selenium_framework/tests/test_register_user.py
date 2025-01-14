@@ -4,11 +4,20 @@ from selenium_framework.automationexercise.pages.login_page import login_page as
 
 
 class TestRegisterUser:
+    """
+    Тестирование регистрации нового пользователя
+    """
 
     def test_open_page(self):
+        """
+        Проверка открытия главной страницы
+        """
         mp.open()
 
     def test_register_new_user(self):
+        """
+        Проверка регистрации нового пользователя с уникальным email
+        """
         mp.click_login_button()
 
         lp.check_page_url()
@@ -21,6 +30,9 @@ class TestRegisterUser:
         ap.verify_account_deleted()
 
     def test_register_existing_user(self):
+        """
+        Проверка попытки регистрации пользователя с уже существующим email
+        """
         existing_email = "test@test.com"
 
         mp.click_login_button()

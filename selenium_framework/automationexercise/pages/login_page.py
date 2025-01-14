@@ -25,6 +25,9 @@ class LoginPage:
         assert s.driver.current_url == self.url
 
     def fill_signup_form_new_user(self):
+        """
+        Заполнение формы регистрации новыми данными пользователя
+        """
         assert predicates.is_displayed(self.signup_form)
         name_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_name)
         email_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_email)
@@ -34,6 +37,9 @@ class LoginPage:
         submit.click()
 
     def fill_signup_form_existing_email(self, existing_email: str):
+        """
+        Заполнение формы регистрации с существующим email
+        """
         assert predicates.is_displayed(self.signup_form)
         name_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_name)
         email_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_email)
@@ -42,6 +48,7 @@ class LoginPage:
         email_field.send_keys(existing_email)
         submit.click()
         signup_form = s.driver.find_element(By.XPATH, self.signup_form)
+        # проверка наличия сообщения об ошибке
         assert self.email_exists_message in signup_form.text
 
 

@@ -7,12 +7,16 @@ from selenium_framework.automationexercise.common import shared as s
 class MainPage:
     url = base_url
 
+    # MainPage locators
     shop_menu = '//*[contains(@class, "shop-menu")]'
     products = '//*[@href="/products"]'
     cart = '//*[@href="/view_cart"]'
     signup_login = '//*[@href="/login"]'
 
     def open(self):
+        """
+        Открытие с проверкой на соответствие url страницы
+        """
         s.driver.get(self.url)
         assert s.driver.current_url == self.url
 

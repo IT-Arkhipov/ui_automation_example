@@ -1,4 +1,5 @@
 import random
+from _typeshed import SupportsLenAndGetItem
 from urllib.parse import urljoin
 
 from selenium.webdriver.common.by import By
@@ -19,6 +20,7 @@ class AccountRegistrationPage:
     account_created_url = urljoin(base_url, 'account_created')
     account_deleted_url = urljoin(base_url, 'delete_account')
 
+    # page locators
     account_info_name = '//input[@id="name"]'
     account_info_email = '//input[@id="email"]'
     indexed_title_radio = lambda self, x: f'//label[@for="id_gender{x}"]'
@@ -51,6 +53,10 @@ class AccountRegistrationPage:
         assert s.driver.current_url == self.signup_url
 
     def fill_account_info(self):
+        """
+        Заполнение данных пользователя
+        """
+        # проверка введенного имени и email пользователя
         account_name = s.driver.find_element(By.XPATH, self.account_info_name)
         assert settings.user_name == account_name.get_attribute('value')
         account_email = s.driver.find_element(By.XPATH, self.account_info_email)
@@ -109,6 +115,9 @@ class AccountRegistrationPage:
         create_account_btn.click()
 
     def verify_account_created(self):
+        """
+        Проверка адреса страницы и сообщения об успешном создании пользователя
+        """
         assert s.driver.current_url == self.account_created_url
         assert 'Account Created!'.lower() in s.driver.find_element(By.XPATH, self.account_creation_success).text.lower()
         s.driver.find_element(By.XPATH, self.continue_btn).click()
@@ -119,6 +128,9 @@ class AccountRegistrationPage:
         _delete_account_btn.click()
 
     def verify_account_deleted(self):
+        """
+        Проверка адреса страницы и сообщения об удалении пользователя
+        """
         assert s.driver.current_url == self.account_deleted_url
         assert 'Account Deleted!'.lower() in s.driver.find_element(By.XPATH, self.account_deletion_success).text.lower()
         s.driver.find_element(By.XPATH, self.continue_btn).click()
