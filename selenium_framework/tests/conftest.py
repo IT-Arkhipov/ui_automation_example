@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium_framework.automationexercise.common.locators import base_url
 
 from selenium_framework.automationexercise.common import shared
+from selenium_framework.automationexercise.common.logger import logger
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -28,3 +29,7 @@ def browser():
     yield shared.driver  # Yield the driver for use in tests
 
     shared.driver.quit()  # Quit the driver after all tests are done
+
+
+def pytest_runtest_call(item):
+    logger.warning(f"{item.cls.__name__}::{item.function.__name__}")
