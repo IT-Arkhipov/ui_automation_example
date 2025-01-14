@@ -7,6 +7,7 @@ from datetime import datetime
 from selenium_framework.automationexercise import project_folder
 from selenium_framework.automationexercise.common.settings import settings
 
+
 log_folder = os.path.join(project_folder, "logs")
 if not os.path.exists(log_folder):
     os.makedirs(log_folder)

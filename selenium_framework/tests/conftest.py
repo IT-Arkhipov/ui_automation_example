@@ -8,6 +8,7 @@ from selenium_framework.automationexercise.common.locators import base_url
 
 from selenium_framework.automationexercise.common import shared
 from selenium_framework.automationexercise.common.logger import logger
+from selenium_framework.automationexercise.common.settings import settings
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -24,7 +25,7 @@ def browser():
     shared.driver.maximize_window()
 
     # shared.driver.implicitly_wait(10)  # switch to exp implicit wait
-    shared.wait = WebDriverWait(shared.driver, 10)
+    shared.wait = WebDriverWait(shared.driver, settings.explicit_wait)
 
     shared.driver.get(base_url)
 

@@ -6,7 +6,6 @@ from pydantic_settings import BaseSettings
 fake = Faker()
 load_dotenv()
 
-
 logging_level = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
 
 
@@ -16,6 +15,7 @@ class Settings(BaseSettings):
     password: str = fake.password()
     existing_email: str = ''
     logging_level: str = 'DEBUG'
+    explicit_wait: int = 5
 
 
 settings = Settings()
