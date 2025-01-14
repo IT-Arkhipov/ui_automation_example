@@ -9,3 +9,7 @@ def is_present(locator: str):
 
 def is_absent(locator: str):
     return not is_present(locator)
+
+
+def is_displayed(locator: str):
+    return s.driver.find_elements(By.XPATH, locator).is_displayed()
