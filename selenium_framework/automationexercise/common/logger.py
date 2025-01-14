@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime
 
 from selenium_framework.automationexercise import project_folder
+from selenium_framework.automationexercise.common.settings import settings
 
 log_folder = os.path.join(project_folder, "logs")
 if not os.path.exists(log_folder):
@@ -20,9 +21,9 @@ if os.path.exists(log_file_name):
     except FileNotFoundError:
         pass
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
-logger.setLevel(logging.INFO)
+logger.setLevel(settings.logging_level)
 formatter = logging.Formatter('%(asctime)s [%(levelname)8s] %(message)s', datefmt="%d/%m %H:%M:%S")
 handler = logging.FileHandler(log_file_name, 'w', encoding='utf-8')
 handler.setFormatter(formatter)
