@@ -6,6 +6,7 @@ from selenium_framework.automationexercise.common.locators import base_url
 from selenium_framework.automationexercise.common import shared as s
 
 
+# didn't use yet
 class Browser:
     def __init__(self):
         options = webdriver.ChromeOptions()

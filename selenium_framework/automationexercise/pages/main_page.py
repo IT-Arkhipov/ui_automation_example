@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 
+
 from selenium_framework.automationexercise.common.locators import base_url
-from selenium_framework.automationexercise.common import shared as s
+from selenium_framework.automationexercise.common.commands import *
 
 
 class MainPage:
@@ -17,11 +18,11 @@ class MainPage:
         """
         Открытие с проверкой на соответствие url страницы
         """
-        s.driver.get(self.url)
-        assert s.driver.current_url == self.url
+        get(self.url)
+        url_to_be(self.url)
 
     def click_login_button(self):
-        s.driver.find_element(By.XPATH, self.signup_login).click()
+        element((By.XPATH, self.signup_login)).click()
 
 
 main_page = MainPage()

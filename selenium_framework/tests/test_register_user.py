@@ -1,6 +1,8 @@
-from selenium_framework.automationexercise.pages.account_register import account_register_page as ap
-from selenium_framework.automationexercise.pages.main_page import main_page as mp
-from selenium_framework.automationexercise.pages.login_page import login_page as lp
+# from selenium_framework.automationexercise.pages.account_register import account_register_page as ap
+# from selenium_framework.automationexercise.pages.main_page import main_page as mp
+# from selenium_framework.automationexercise.pages.login_page import login_page as lp
+
+from selenium_framework.automationexercise.pages.import_pages import *
 
 
 class TestRegisterUser:
@@ -12,12 +14,18 @@ class TestRegisterUser:
         """
         Проверка открытия главной страницы
         """
+        mp = main_page
+
         mp.open()
 
     def test_register_new_user(self):
         """
         Проверка регистрации нового пользователя с уникальным email
         """
+        mp = main_page
+        lp = login_page
+        ap = account_register_page
+
         mp.click_login_button()
 
         lp.check_page_url()
@@ -33,6 +41,9 @@ class TestRegisterUser:
         """
         Проверка попытки регистрации пользователя с уже существующим email
         """
+        mp = main_page
+        lp = login_page
+
         existing_email = "test@test.com"
 
         mp.click_login_button()

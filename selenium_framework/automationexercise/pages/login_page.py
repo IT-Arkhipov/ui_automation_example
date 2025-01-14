@@ -3,11 +3,10 @@ from urllib.parse import urljoin
 from selenium.webdriver.common.by import By
 from faker import Faker
 
-from selenium_framework.automationexercise.common import shared as s
 from selenium_framework.automationexercise.common.locators import base_url
 from selenium_framework.automationexercise.common import predicates
-
-from selenium_framework.automationexercise.settings import settings
+from selenium_framework.automationexercise.common.commands import *
+from selenium_framework.automationexercise.common.settings import settings
 
 fake = Faker()
 
@@ -28,10 +27,10 @@ class LoginPage:
         """
         Заполнение формы регистрации новыми данными пользователя
         """
-        assert predicates.is_displayed(self.signup_form)
-        name_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_name)
-        email_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_email)
-        submit = s.driver.find_element(By.XPATH, self.signup_form + self.submit_btn)
+        assert predicates.is_displayed((By.XPATH, self.signup_form))
+        name_field = element((By.XPATH, self.signup_form + self.input_name))
+        email_field = element((By.XPATH, self.signup_form + self.input_email))
+        submit = element((By.XPATH, self.signup_form + self.submit_btn))
         name_field.send_keys(settings.user_name)
         email_field.send_keys(settings.user_email)
         submit.click()
@@ -40,14 +39,14 @@ class LoginPage:
         """
         Заполнение формы регистрации с существующим email
         """
-        assert predicates.is_displayed(self.signup_form)
-        name_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_name)
-        email_field = s.driver.find_element(By.XPATH, self.signup_form + self.input_email)
-        submit = s.driver.find_element(By.XPATH, self.signup_form + self.submit_btn)
+        assert predicates.is_displayed((By.XPATH, self.signup_form))
+        name_field = element((By.XPATH, self.signup_form + self.input_name))
+        email_field = element((By.XPATH, self.signup_form + self.input_email))
+        submit = element((By.XPATH, self.signup_form + self.submit_btn))
         name_field.send_keys(settings.user_name)
         email_field.send_keys(existing_email)
         submit.click()
-        signup_form = s.driver.find_element(By.XPATH, self.signup_form)
+        signup_form = element((By.XPATH, self.signup_form))
         # проверка наличия сообщения об ошибке
         assert self.email_exists_message in signup_form.text
 
