@@ -1,5 +1,4 @@
 import random
-from _typeshed import SupportsLenAndGetItem
 from urllib.parse import urljoin
 
 from selenium.webdriver.common.by import By
