@@ -17,3 +17,10 @@ Example of UI testing via Python automation
 _pip_
 
 `pip install -r requirements.txt`
+
+
+**Запуск тестов**
+
+Все тесты: `pytest .`
+
+Тесты с использованием Selenium: `pytest .\selenium_framework\tests\`
