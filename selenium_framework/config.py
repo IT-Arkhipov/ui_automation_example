@@ -1,24 +1,16 @@
 from selenium import webdriver
 
-
-class DriverSingleton:
-    _instance = None
-
-    @staticmethod
-    def get_instance():
-        if DriverSingleton._instance is None:
-            options = webdriver.ChromeOptions()
-            options.page_load_strategy = 'eager'
-            DriverSingleton._instance = webdriver.Chrome(options=options)
-            DriverSingleton._instance.maximize_window()
-            DriverSingleton._instance.implicitly_wait(10)
-        return DriverSingleton._instance
-
-    @staticmethod
-    def quit():
-        if DriverSingleton._instance:
-            DriverSingleton._instance.quit()
-            DriverSingleton._instance = None
+from selenium_framework.automationexercise.common.locators import base_url
 
 
-driver_singleton = DriverSingleton().get_instance()
+class Browser:
+    def __init__(self):
+        options = webdriver.ChromeOptions()
+        options.page_load_strategy = 'eager'
+        self.browser = webdriver.Chrome(options=options)
+        self.browser.maximize_window()
+        self.browser.implicitly_wait(10)
+        self.browser.get(base_url)
+
+
+browser = Browser()
