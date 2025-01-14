@@ -1,3 +1,4 @@
+from selenium_framework.automationexercise.common.settings import settings
 from selenium_framework.automationexercise.pages.import_pages import *
 
 
@@ -40,9 +41,7 @@ class TestRegisterUser:
         mp = main_page
         lp = login_page
 
-        existing_email = "test@test.com"
-
         mp.click_login_button()
 
         lp.check_page_url()
-        lp.fill_signup_form_existing_email(existing_email)
+        lp.fill_signup_form_existing_email(settings.xisting_email)
