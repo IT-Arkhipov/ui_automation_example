@@ -16,10 +16,10 @@ def url_to_be(url: str):
 
 
 def element(locator: tuple) -> WebElement:
-    logger.info(f"Поиск элемента по селектору: {locator[1]}")
+    logger.debug(f"Поиск элемента по селектору: {locator[1]}")
     return s.wait.until(EC.visibility_of(s.driver.find_element(*locator)))
 
 
 def elements(locator: tuple[str, str]) -> list[WebElement]:
-    logger.info(f"Поиск элементов по селектору: {locator[1]}")
+    logger.debug(f"Поиск элементов по селектору: {locator[1]}")
     return s.wait.until(EC.presence_of_all_elements_located(locator))
