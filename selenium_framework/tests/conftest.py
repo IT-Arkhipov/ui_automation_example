@@ -20,4 +20,3 @@ def browser():
     yield shared.driver  # Yield the driver for use in tests
 
     shared.driver.quit()  # Quit the driver after all tests are done
-q
