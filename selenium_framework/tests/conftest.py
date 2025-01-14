@@ -1,3 +1,5 @@
+import traceback
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -29,8 +31,19 @@ def browser():
     logger.warning('WebDriver initialized')
     yield shared.driver
 
+    logger.warning('Close WebDriver')
     shared.driver.quit()
 
 
 def pytest_runtest_call(item):
-    logger.warning(f"{item.cls.__name__}::{item.function.__name__}")
+    logger.warning(f"{item.cls.__name__}::{item.function.__name__}: {item.function.__doc__.replace('/n', '').strip()}")
+
+
+# This hook runs after each test is executed
+def pytest_runtest_makereport(item, call):
+    if call.when == 'call':  # Only log the results after the test call
+        if call.excinfo is None:  # Test passed
+            logger.warning(f"Test PASSED: {item.name}")
+        else:  # Test failed
+            logger.error(f"Test FAILED: {item.name} - {call.excinfo.value}")
+
