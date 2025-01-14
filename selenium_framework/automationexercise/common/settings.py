@@ -1,5 +1,3 @@
-from enum import Enum
-
 from faker import Faker
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
@@ -16,6 +14,7 @@ class Settings(BaseSettings):
     user_name: str = fake.first_name()
     user_email: str = fake.company_email()
     password: str = fake.password()
+    existing_email: str = ''
     logging_level: str = 'DEBUG'
 
 
