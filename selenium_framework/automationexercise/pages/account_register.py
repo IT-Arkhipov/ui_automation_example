@@ -63,7 +63,7 @@ class AccountRegistrationPage:
         account_password = s.driver.find_element(By.XPATH, self.account_info_password)
         account_password.send_keys(settings.password)
 
-        random_date =  uitl.random_date(start_year=1900, end_year=2021, date_format="%d %B %Y")
+        random_date = util.random_date(start_year=1900, end_year=2021, date_format="%d %B %Y")
 
         account_date = s.driver.find_element(By.XPATH, self.date_of_birth)
         selector = Select(account_date)
