@@ -26,9 +26,10 @@ def browser():
 
     shared.driver.get(base_url)
 
-    yield shared.driver  # Yield the driver for use in tests
+    logger.warning('WebDriver initialized')
+    yield shared.driver
 
-    shared.driver.quit()  # Quit the driver after all tests are done
+    shared.driver.quit()
 
 
 def pytest_runtest_call(item):
