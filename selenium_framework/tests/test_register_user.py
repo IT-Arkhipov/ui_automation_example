@@ -44,4 +44,4 @@ class TestRegisterUser:
         mp.click_login_button()
 
         lp.check_page_url()
-        lp.fill_signup_form_existing_email(settings.xisting_email)
+        lp.fill_signup_form_existing_email(settings.existing_email)
