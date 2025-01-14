@@ -12,4 +12,4 @@ def is_absent(locator: str):
 
 
 def is_displayed(locator: str):
-    return s.driver.find_elements(By.XPATH, locator).is_displayed()
+    return s.driver.find_element(By.XPATH, locator).is_displayed()
