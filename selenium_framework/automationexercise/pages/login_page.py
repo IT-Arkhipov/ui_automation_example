@@ -1,3 +1,5 @@
+import inspect
+
 from urllib.parse import urljoin
 
 from selenium.webdriver.common.by import By
@@ -21,12 +23,21 @@ class LoginPage:
     submit_btn = '//button[@type="submit"]'
 
     def check_page_url(self):
+        """
+        Проверка текущего url страницы
+        """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         assert s.driver.current_url == self.url
 
     def fill_signup_form_new_user(self):
         """
         Заполнение формы регистрации новыми данными пользователя
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         assert predicates.is_displayed((By.XPATH, self.signup_form))
         name_field = element((By.XPATH, self.signup_form + self.input_name))
         email_field = element((By.XPATH, self.signup_form + self.input_email))
@@ -37,8 +48,11 @@ class LoginPage:
 
     def fill_signup_form_existing_email(self, existing_email: str):
         """
-        Заполнение формы регистрации с существующим email
+        Заполнение формы регистрации имеющимся в базе email
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         assert predicates.is_displayed((By.XPATH, self.signup_form))
         name_field = element((By.XPATH, self.signup_form + self.input_name))
         email_field = element((By.XPATH, self.signup_form + self.input_email))

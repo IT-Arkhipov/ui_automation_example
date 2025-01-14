@@ -1,3 +1,5 @@
+import inspect
+
 from selenium.webdriver.common.by import By
 
 
@@ -18,10 +20,19 @@ class MainPage:
         """
         Открытие с проверкой на соответствие url страницы
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         get(self.url)
         url_to_be(self.url)
 
     def click_login_button(self):
+        """
+        Клик по кнопке "Sign Up / Login"
+        """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         element((By.XPATH, self.signup_login)).click()
 
 

@@ -1,3 +1,4 @@
+import inspect
 import random
 from urllib.parse import urljoin
 
@@ -49,12 +50,22 @@ class AccountRegistrationPage:
     logout_btn = '//*[@href="/logout"]'
 
     def check_page_url(self):
+        """
+        Проверка текущего url страницы
+        """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
+        # logger.info(f"Проверка url: {self.signup_url}")
         assert s.driver.current_url == self.signup_url
 
     def fill_account_info(self):
         """
         Заполнение данных пользователя
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         # проверка введенного имени и email пользователя
         account_name = element((By.XPATH, self.account_info_name))
         assert settings.user_name == account_name.get_attribute('value')
@@ -117,11 +128,19 @@ class AccountRegistrationPage:
         """
         Проверка адреса страницы и сообщения об успешном создании пользователя
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
+
         assert s.driver.current_url == self.account_created_url
         assert 'Account Created!'.lower() in element((By.XPATH, self.account_creation_success)).text.lower()
         element((By.XPATH, self.continue_btn)).click()
 
     def delete_account(self):
+        """
+        Удаление аккаунта
+        """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
         _delete_account_btn = element((By.XPATH, self.delete_account_btn))
         assert _delete_account_btn.is_displayed()
         _delete_account_btn.click()
@@ -130,6 +149,8 @@ class AccountRegistrationPage:
         """
         Проверка адреса страницы и сообщения об удалении пользователя
         """
+        logger.info(f'{__name__.split(".")[-1]}::{inspect.currentframe().f_code.co_name}: ' + eval(
+            f'self.{inspect.currentframe().f_code.co_name}.__doc__').replace('/n', '').strip())
         assert s.driver.current_url == self.account_deleted_url
         assert 'Account Deleted!'.lower() in element((By.XPATH, self.account_deletion_success)).text.lower()
         element((By.XPATH, self.continue_btn)).click()
