@@ -27,7 +27,7 @@ def headless(request):
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_config(browser_type, headless):
-    if (browser_type or settings.browser) == "chrome":
+    if (browser_type or settings.browser).lower() == "chrome":
         options = webdriver.ChromeOptions()
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("prefs", {
@@ -39,12 +39,18 @@ def browser_config(browser_type, headless):
         if headless or settings.headless:
             options.add_argument("-headless")
         shared.driver = webdriver.Chrome(options=options)
-    else:
+    elif (browser_type or settings.browser).lower() == "firefox":
         options = webdriver.FirefoxOptions()
         options.page_load_strategy = 'eager'
         if headless or settings.headless:
             options.add_argument("-headless")
         shared.driver = webdriver.Firefox(options=options)
+    else:
+        try:
+            raise Exception
+        except Exception as e:
+            logger.exception(f"Unsupported browser: {browser_type}")
+            raise Exception(f"Unsupported browser: {browser_type}")
 
     if headless or settings.headless:
         options.add_argument("-headless")
