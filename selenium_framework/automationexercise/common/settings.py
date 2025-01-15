@@ -1,3 +1,5 @@
+from typing import Literal
+
 from faker import Faker
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
@@ -6,7 +8,7 @@ from pydantic_settings import BaseSettings
 fake = Faker()
 load_dotenv()
 
-logging_level = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
+LoggingLevel = Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
 
 
 class Settings(BaseSettings):
@@ -14,11 +16,10 @@ class Settings(BaseSettings):
     user_email: str = fake.company_email()
     password: str = fake.password()
     existing_email: str = ''
-    logging_level: str = 'DEBUG'
+    logging_level: LoggingLevel = 'DEBUG'
     explicit_wait: int = 5
+    headless: bool = False
+    browser: str = 'chrome'
 
 
 settings = Settings()
-settings.logging_level = settings.logging_level.upper()
-if settings.logging_level not in logging_level:
-    settings.logging_level = 'DEBUG'
